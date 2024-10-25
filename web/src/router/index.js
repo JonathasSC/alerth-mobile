@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Inicial from '../pages/Inicial.vue';
+import conquistas from '../pages/Conquistas.vue'
 
 const routes = [
   {
@@ -7,6 +8,12 @@ const routes = [
     name: 'Inicial',
     component: Inicial,
   },
+
+  {
+    path: '/conquistas',
+    name: 'conquistas',
+    component: conquistas,
+  }
 
 
 ];

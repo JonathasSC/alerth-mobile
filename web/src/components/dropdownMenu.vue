@@ -14,7 +14,7 @@
         <h2>Conta</h2>
         <a href="#">Perfil</a>
         <a href="#">Preferências</a>
-        <a href="#">Conquistas</a>
+        <router-link to="/conquistas">Conquistas</router-link>
 
         <h2>Aplicativo</h2>
         <a href="#">Notificações</a>
@@ -84,9 +84,11 @@ export default {
 
 .containerConquista {
     text-align: center;
-    margin-bottom: 50px;
+    padding: 20px 0; 
     background-color: #ECF4FF;
     border-radius: 10px;
+    width: calc(100% + 40px); 
+    margin-left: -20px;   
 }
 
 .containerConquista h1 {
