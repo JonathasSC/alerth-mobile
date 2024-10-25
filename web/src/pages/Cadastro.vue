@@ -2,44 +2,78 @@
   <div class="login-container">
     <h1 class="title">Crie uma conta</h1>
     <p class="subtitle">Nos ajude a tornar a cidade melhor</p>
-    <form @submit.prevent="handleLogin">
+    <Form @submit="onSubmit" v-slot="{ values }" :validation-schema="signupSchema" >
       <div class="form-group">
-        <input type="text" v-model="username" placeholder="Nome de usuário" required />
+        <Field name="username" v-slot="{ field, meta, errorMessage }">
+          <p class="error-message" v-if="!!errorMessage">
+            {{ errorMessage }}
+          </p>
+          <input 
+            :class="meta.touched && !meta.valid ? 'invalid' : ''" 
+            v-bind="field" 
+            placeholder="Nome de usuário" 
+          />
+        </Field>
       </div>
       <div class="form-group">
-        <input type="text" v-model="email" placeholder="E-mail" required />
+        <Field name="email" v-slot="{ field, meta, errorMessage }">
+        <p class="error-message" v-if="!!errorMessage">
+            {{ errorMessage }}
+          </p>
+          <input 
+            :class="meta.touched && !meta.valid ? 'invalid' : ''" 
+            v-bind="field" 
+            placeholder="E-mail" 
+          />
+        </Field>
       </div>
       <div class="form-group">
-        <input type="password" v-model="password" placeholder="Senha" required />
+        <Field name="password" v-slot="{ field, meta, errorMessage }">
+        <p class="error-message" v-if="!!errorMessage">
+            {{ errorMessage }}
+          </p>
+          <input 
+            :class="meta.touched && !meta.valid ? 'invalid' : ''" 
+            v-bind="field" 
+            placeholder="Senha" 
+          />
+        </Field>
       </div>
+      
       <div class="links-container">
-        <router-link to="/recuperar-senha" class="forgot-password-link">Esqueci a senha</router-link>
-      </div>
+         <RouterLink to="/recuperar-senha" class="forgot-password-link">
+          Esqueci a senha
+        </RouterLink>
+    </div>
       <button type="submit" class="login-button">Fazer registro</button>
+
       <div class="register-link-container">
-        <router-link to="/cadastro" class="register-link">Já possui uma conta? Faça login</router-link>
+        <RouterLink to="/login" class="register-link">
+          Já possui uma conta? Faça login
+        </RouterLink>
       </div>
-    </form>
+    </Form>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      username: '',
-      email: '',
-      password: ''
-    };
-  },
-  methods: {
-    handleLogin() {
-      console.log('Usuário:', this.username);
-      console.log('E-mail:', this.email);
-      console.log('Password:', this.password);
-    }
-  }
-};
+<script setup>
+import { Field, Form } from 'vee-validate';
+import { ref } from 'vue'
+import * as yup from 'yup'
+
+const signupSchema = yup.object({
+  username: yup.string().required('Esse campo não pode ficar vazio'),
+  email: yup.string().required('Esse campo não pode ficar vazio').email('Insira um email válido'),
+  password: yup.string().required('Esse campo não pode ficar vazio').min(8, 'Mínimo 8 caracteres')
+})
+
+const onSubmit = async (values) => {
+  console.log(values)
+}
+
+const onClick = () => {
+  console.log('clicked')
+}
 </script>
 
 <style scoped>
@@ -90,11 +124,28 @@ input {
   border-radius: 5px;
   font-size: 13px;
   background-color: #EEF5FF; 
-  color: white;
+  color: black;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus-visible {
+  border-color: #EEF9FF;
+}
+
+input.invalid {
+  border-color: red;
 }
 
 input::placeholder {
   color: #758EB5;
+}
+
+.error-message {
+    color: red;
+    font-size: 90%;
+    margin: 0;
+    position: relative;
 }
 
 .links-container {
