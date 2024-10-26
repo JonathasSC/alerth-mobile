@@ -49,7 +49,7 @@ export default {
       productItems: [
       { imageSrc: "link-da-imagem-3.jpg", price: "$20" },
       { imageSrc: "link-da-imagem-3.jpg", price: "$20" },
-        { imageSrc: "link-da-imagem-4.jpg", price: "$25" },
+      { imageSrc: "link-da-imagem-4.jpg", price: "$25" },
       ],
     };
   },
