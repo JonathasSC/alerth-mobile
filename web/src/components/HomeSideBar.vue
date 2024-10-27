@@ -18,11 +18,6 @@
         <li>Sair da conta</li>
       </ul>
     </div>
-    <div
-      :class="{ hidden: !isActive }"
-      class="backdrop"
-      @click="$emit('close')"
-    ></div>
   </div>
 </template>
 
@@ -36,17 +31,9 @@ defineProps({
 </script>
 
 <style scoped>
-.backdrop {
-  width: 100%;
-  height: 100%;
-  background-color: #0000002d;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-  opacity: 1;
-}
-
 .hidden {
   opacity: 0;
+  display: none;
   pointer-events: none;
 }
 
@@ -54,14 +41,15 @@ defineProps({
   top: 0;
   width: 100%;
   height: 100vh;
-  display: flex;
   position: absolute;
+  pointer-events: none;
 }
 
 .sidebar__content {
+  opacity: 0;
+  z-index: 0;
   left: -240px;
   height: 100%;
-  z-index: 11;
   width: 240px;
   position: absolute;
   display: flex;
@@ -70,11 +58,14 @@ defineProps({
   background-color: var(--color-slate-50);
   padding: var(--padding-lg);
   padding-top: var(--padding-2xl);
-  transition: left 0.3s ease; /* Animação do slide */
+  transition: left 0.3s ease;
 }
 
 .active {
   left: 0;
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
 }
 
 .sidebar__list {
