@@ -1,8 +1,8 @@
 <template>
-  <div class="card-lojinha" v-for="(item, index) in items" :key="index">
-    <img :src="item.imageSrc" alt="" class="product-image" />
-    <div class="price-container">
-      <div class="price">{{ item.price }}</div>
+  <div class="shop-card" v-for="(item, index) in items" :key="index">
+    <img :src="item.imagePath" />
+    <div class="shop-card__price-container">
+      <p>{{ item.price }}</p>
     </div>
   </div>
 </template>
@@ -20,11 +20,11 @@ export default {
 </script>
 
 <style scoped>
-.card-lojinha {
+.shop-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #EEF5FF;
+  background-color: #eef5ff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
@@ -33,21 +33,20 @@ export default {
   margin-bottom: 15px;
 }
 
-.product-image {
+.shop-card img {
   width: 100%;
   height: auto;
   border-radius: 8px 8px 0 0;
 }
 
-.price-container {
+.shop-card__price-container {
   background-color: #3888ff;
-  padding: 10px;
   text-align: center;
 }
 
-.price {
+.shop-card__price-container p {
   font-size: 0.8rem;
   font-weight: bold;
-  color: #FFF;
+  color: #fff;
 }
 </style>
