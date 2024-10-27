@@ -1,0 +1,52 @@
+:root {
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 32px;
+  --border-radius-2xl: 64px;
+
+  --padding-xs: 4px;
+  --padding-sm: 8px;
+  --padding-md: 16px;
+  --padding-lg: 24px;
+  --padding-xl: 32px;
+  --padding-2xl: 64px;
+  --padding-3xl: 96px;
+
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+  --margin-xl: 32px;
+  --margin-2xl: 64px;
+
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+  --gap-2xl: 64px;
+
+  --font-size-xxs: 8pt;
+  --font-size-xs: 10pt;
+  --font-size-sm: 12pt;
+  --font-size-md: 16pt;
+  --font-size-lg: 20pt;
+  --font-size-xl: 24pt;
+  --font-size-2xl: 30pt;
+  --font-size-3xl: 36pt;
+  --font-size-4xl: 44pt;
+  --font-size-5xl: 56pt;
+
+  --color-blue-primary: #3888ff;
+
+  --color-slate-50: #fdfdfd;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+}
