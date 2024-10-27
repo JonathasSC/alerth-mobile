@@ -1,6 +1,6 @@
 <template>
   <div class="card-lojinha" v-for="(item, index) in items" :key="index">
-    <img :src="item.imageSrc" alt="Imagem do produto" class="product-image" />
+    <img :src="item.imageSrc" alt="" class="product-image" />
     <div class="price-container">
       <div class="price">{{ item.price }}</div>
     </div>
@@ -24,13 +24,13 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f9f9f9;
+  background-color: #EEF5FF;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
   width: calc(33.333% - 10px);
   max-width: 120px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .product-image {
@@ -40,14 +40,14 @@ export default {
 }
 
 .price-container {
-  background-color: #e0f0ff;
+  background-color: #3888ff;
   padding: 10px;
   text-align: center;
 }
 
 .price {
-  font-size: 1.2em;
+  font-size: 0.8rem;
   font-weight: bold;
-  color: #3888ff;
+  color: #FFF;
 }
 </style>

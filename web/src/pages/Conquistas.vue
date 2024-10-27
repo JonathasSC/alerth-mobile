@@ -1,7 +1,6 @@
 <template>
   <router-link to="/">
-    <div class="bar left"></div>
-    <div class="bar right"></div>
+    <img src="../assets/voltarMenu.jpg" class="voltarMenu" alt="Voltar para o menu anterior">
   </router-link>
 
   <div class="infoXP__C">
@@ -19,7 +18,7 @@
     <p>Parabéns, você notificou 100 ocorrências</p>
   </div>
 
-  <h2>Recompensas</h2>
+  <h2 style="margin-left: 15px;">Recompensas</h2>
   <div class="recompensas-container">
     <CardRecompensas :completed="true" :xpLevel="10" />
     <CardRecompensas :completed="true" :xpLevel="25" />
@@ -28,7 +27,7 @@
     <CardRecompensas :completed="false" :xpLevel="100" />
   </div>
 
-  <h2>Lojinha</h2>
+  <h2 style="margin-left: 15px;">Lojinha</h2>
   <div class="lojinha-container">
     <CardLojinha :items="productItems" />
   </div>
@@ -37,7 +36,7 @@
 <script>
 import CardRecompensas from "../components/cardRecompensas.vue";
 import CardLojinha from "../components/cardLojinha.vue";
-
+// import imagemExemplo from "../assets/medal.png"
 
 export default {
   components: {
@@ -47,9 +46,15 @@ export default {
   data() {
     return {
       productItems: [
-      { imageSrc: "link-da-imagem-3.jpg", price: "$20" },
-      { imageSrc: "link-da-imagem-3.jpg", price: "$20" },
-      { imageSrc: "link-da-imagem-4.jpg", price: "$25" },
+        // na imagem, importa a imagem e chama como variável logo abaixo
+
+      // { imageSrc: imagemExemplo, price: "$20" },
+      { imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy-RKAfwqGhTdxO_3Jo4TM3Gi17xP5-sT9WA&s", price: "20 C" },
+      { imageSrc: "", price: "25 C" },
+      { imageSrc: "", price: "20 C" },
+      { imageSrc: "", price: "25 C" },
+      { imageSrc: "", price: "20 C" },
+      { imageSrc: "", price: "25 C" },
       ],
     };
   },
@@ -59,34 +64,28 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Inder&display=swap");
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .voltarMenu {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  max-width: 100%;  
+  height: auto;
+}
+
+
 .infoXP__C {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
-  margin-top: 30px;
+  margin-top: 60px;
   font-weight: bold;
-}
-
-.bar {
-  position: absolute;
-  background-color: black;
-}
-
-.left {
-  width: 10px;
-  height: 30px;
-  top: 10px;
-  left: 30px;
-  transform: rotate(243deg);
-}
-
-.right {
-  width: 10px;
-  height: 30px;
-  top: 20px;
-  left: 30px;
-  transform: rotate(-69deg);
 }
 
 .infoXP {
@@ -115,8 +114,8 @@ export default {
   padding: 20px 0;
   background-color: #ecf4ff;
   border-radius: 10px;
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: 100%; 
+  margin: 0;    
 }
 
 .containerConquista h1 {
@@ -142,15 +141,19 @@ h2 {
 
 .recompensas-container {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  gap: 10px;
+  padding: 10px; 
   overflow-x: auto;
+  max-width: 100%; 
 }
+
 
 .lojinha-container {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-left: 15px;
 }
 </style>

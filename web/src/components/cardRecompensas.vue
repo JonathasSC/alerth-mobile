@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .container-recompensas {
-    width: 100px;
+    min-width: 100px;
     height: 150px;
     margin: 10px;
     position: relative;
@@ -43,13 +43,15 @@ export default {
 }
 
 .header {
-    background-color: #3888ff;
+    background-color: #758EB5;
     padding: 15px;
     text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .xp-title {
-    font-size: 1.2em;
+    font-size: 0.8em;
     color: white;
     font-weight: bold;
     margin: 0;
@@ -61,6 +63,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .check-icon {

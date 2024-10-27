@@ -46,9 +46,10 @@ export default {
     border-radius: 16px;
     z-index: 3;
     padding: 20px;
-    width: 250px;
-    height: calc(100vh - 40px);
+    width: 280px;
     overflow: hidden; 
+    height: 100vh; 
+
 }
 
 
@@ -77,10 +78,10 @@ export default {
 }
 
 .imagemTrofeu {
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 60px;
+    max-width: 100%; 
+    height: auto;
 }
+
 
 .containerConquista {
     text-align: center;
