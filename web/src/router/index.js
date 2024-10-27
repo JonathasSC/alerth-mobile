@@ -1,12 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Inicial from '../pages/Inicial.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../pages/Home.vue";
+import Achievements from "../pages/Achievements.vue";
 import Cadastro from '../pages/Cadastro.vue';
 
 const routes = [
   {
-    path: '/',
-    name: 'Inicial',
-    component: Inicial,
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
     path: '/cadastro',
@@ -14,7 +15,11 @@ const routes = [
     component: Cadastro,
   },
 
-
+  {
+    path: "/achievements",
+    name: "achievements",
+    component: Achievements,
+  },
 ];
 
 const router = createRouter({
