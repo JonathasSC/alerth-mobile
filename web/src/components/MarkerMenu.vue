@@ -12,7 +12,7 @@
           <span class="material-symbols-outlined">search</span>
         </button>
       </div>
-      <div class="categories">
+      <div class="categories" v-if="categories == Array.isArray()">
         <button
           v-for="category in categories"
           :key="category.service_category_id"
@@ -44,6 +44,7 @@ export default {
     try {
       const response = await serviceCategoryService.getAll();
       this.categories = response.data;
+      console.log(response.data);
       const wsUrl = import.meta.env.VITE_WS_BASE_URL;
       WebSocketService.connect(wsUrl);
     } catch (error) {
