@@ -23,8 +23,3 @@ button {
 body {
   background-color: var(--color-slate-50);
 }
-
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter-Variable.ttf");
-}

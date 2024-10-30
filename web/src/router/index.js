@@ -1,24 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/Home.vue";
-import Achievements from "../pages/Achievements.vue";
-import Cadastro from '../pages/Cadastro.vue';
+import HomeView from "../pages/HomeView.vue";
+import AchievementsView from "../pages/AchievementsView.vue";
+import RegisterView from "../pages/RegisterView.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomeView,
   },
   {
-    path: '/cadastro',
-    name: 'Cadastro',
-    component: Cadastro,
+    path: "/register",
+    name: "Register",
+    component: RegisterView,
   },
 
   {
     path: "/achievements",
     name: "achievements",
-    component: Achievements,
+    component: AchievementsView,
   },
 ];
 
