@@ -21,3 +21,11 @@ button {
   overflow: hidden; 
   height: 100%; 
 }
+
+.back-menu__icon {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  max-width: 100%;
+  height: auto;
+}

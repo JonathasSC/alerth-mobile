@@ -4,18 +4,21 @@
       <ul class="sidebar__list">
         <h1 class="sidebar__title">Conta</h1>
         <li class="sidebar__item">
-          <a class="sidebar__link" href="#perfil">Perfil</a>
+          <router-link class="sidebar__link" to="/profile">Perfil</router-link>
         </li>
         <li class="sidebar__item">
           <a class="sidebar__link" href="#preferencias">Preferências</a>
         </li>
         <li class="sidebar__item">
-          <a class="sidebar__link" href="#conquistas">Conquistas</a>
+          <router-link class="sidebar__link" to="/achievements">Conquistas</router-link>
         </li>
+
       </ul>
       <ul class="sidebar__list">
         <li>Trocar de conta</li>
-        <li>Sair da conta</li>
+        
+          <li><router-link to="/login">Sair da conta</router-link></li>
+        
       </ul>
     </div>
   </div>

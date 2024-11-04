@@ -30,8 +30,8 @@
   </div>
 </template>
 <script>
-import CardRecompensas from "../components/cardRecompensas.vue";
-import CardLojinha from "../components/cardLojinha.vue";
+import CardRecompensas from "../components/CardReward.vue";
+import CardLojinha from "../components/CardShop.vue";
 
 export default {
   components: {
@@ -62,14 +62,6 @@ export default {
 html,
 body {
   overflow-x: hidden;
-}
-
-.back-menu__icon {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  max-width: 100%;
-  height: auto;
 }
 
 .xp-currency {
