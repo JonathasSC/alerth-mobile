@@ -5,6 +5,7 @@
     <div class="profile-container">
         <div class="profile-picture">
             <img :src="user.profilePicture" alt="Foto do usuário" />
+            <span class="add-photo-icon" @click="showModal = true">+</span>
         </div>
         <div class="profile-info">
             <h2>{{ user.firstName }} {{ user.lastName }}</h2>
@@ -26,6 +27,15 @@
             </router-link>
             <button class="profile-button">Editar</button>
         </div>
+
+        <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+            <div class="modal-content">
+                <h2>Foto de perfil</h2>
+                <label for="file-upload">Anexar foto:</label>
+                <input type="file" id="file-upload" @change="handleFileUpload" />
+                <button class="close-button" @click="closeModal">Fechar</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -40,12 +50,21 @@ export default {
                 lastName: "dos Santos",
                 email: "testedossantos@gmail.com",
             },
-            events: [
-                "Evento 1",
-                "Evento 2",
-                "Evento 3",
-            ],
+            events: ["Evento 1", "Evento 2", "Evento 3"],
+            showModal: false,
         };
+    },
+    methods: {
+        closeModal() {
+            this.showModal = false;
+        },
+        handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.user.profilePicture = URL.createObjectURL(file); // Atualiza a foto de perfil com a nova imagem
+                this.showModal = false; // Fecha o modal após a seleção da imagem
+            }
+        },
     },
 };
 </script>
@@ -62,12 +81,33 @@ export default {
     margin: 20px auto;
 }
 
+.profile-picture {
+    position: relative;
+}
+
 .profile-picture img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
     background-size: cover;
+}
+
+.add-photo-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .profile-info {
@@ -131,4 +171,58 @@ export default {
 .profile-button:hover {
     background-color: #0056b3;
 }
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    font-family: "Inder", serif;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.modal-content input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.close-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Inder", serif;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}
+
 </style>
