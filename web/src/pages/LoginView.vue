@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="login-container">
+    <div class="container-acess">
       <h1 class="title">Entrar em Alerth</h1>
       <p class="subtitle">Contribuindo para uma <br> cidade melhor</p>
       <form @submit.prevent="handleLogin">
@@ -14,9 +14,10 @@
         <div class="links-container">
           <router-link to="#" class="forgot-password-link">Esqueci a senha</router-link>
         </div>
-        <button type="submit" class="login-button">Entrar na minha conta</button>
-        <div class="register-link-container">
-          <router-link to="/register" class="register-link">Não possui uma conta? Criar conta</router-link>
+        <button type="submit" class="button-advanced">Entrar na minha conta</button>
+        <div class="container-link-acess">
+          <router-link to="/register" class="account-info-has
+">Não possui uma conta? Criar conta</router-link>
         </div>
       </form>
     </div>
@@ -62,65 +63,14 @@ export default {
 </script>
 
 <style scoped>
+@import '../login-register.css';
+
 .page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   overflow: hidden;
-}
-
-.login-container {
-  width: 380px;
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 8px;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: bold;
-  color: #3888FF;
-  margin-bottom: 1px;
-  align-self: flex-start;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #a0bee9;
-  margin-top: 8px;
-  margin-bottom: 25px;
-  align-self: flex-start;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.input-error input {
-  border: 1px solid red;
-}
-
-input {
-  width: 330px;
-  padding: 15px;
-  border-radius: 8px;
-  border: none;
-  font-size: 0.8rem;
-  background-color: #EEF5FF;
-}
-
-input::placeholder {
-  color: #758EB5;
 }
 
 .links-container {
@@ -135,26 +85,4 @@ input::placeholder {
   color: #7D93B5;
 }
 
-.login-button {
-  width: 330px;
-  padding: 15px;
-  background-color: #3888FF;
-  color: white;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.register-link-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.register-link {
-  font-size: 0.8rem;
-  color: #3888ffd7;
-  text-decoration: none;
-}
 </style>

@@ -1,0 +1,74 @@
+.container-acess {
+  width: 380px;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-info-has
+ {
+  font-size: 0.8rem;
+  color: #3888ffd7;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3888FF;
+  align-self: flex-start;
+}
+
+input {
+  width: 340px;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.8rem;
+  background-color: #EEF5FF;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #a0bee9;
+  margin-top: 8px;
+  margin-bottom: 25px;
+  align-self: flex-start;
+}
+
+input::placeholder {
+  color: #758EB5;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.button-advanced {
+  width: 330px;
+  padding: 15px;
+  background-color: #3888FF;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.button-advanced:hover {
+  background-color: #0c67ee;
+}
+
+.container-link-acess {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
