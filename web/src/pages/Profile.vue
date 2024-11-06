@@ -21,6 +21,26 @@
 
         <h3 class="events-title">Conquistas</h3>
 
+        <div class="achievement-progress">
+        <div class="progress-bar">
+            <div class="progress" :style="{ width: progressPercentage + '%' }"></div>
+            <div class="achievement-icons-container">
+                <div v-for="(achievement, index) in achievements" :key="index" class="achievement-icon"
+                    :style="{ left: (index / (achievements.length - 1)) * 100 + '%' }">
+                    <span :class="achievement.unlocked ? 'unlocked' : 'locked'">
+                        {{ achievement.unlocked ? '🏆' : '🔒' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="reward-card">
+            <img src="../assets/cardReward.png" alt="Recompensas" class="reward-image">
+            <span class="reward-text">Ver todas conquistas</span>
+        </div>
+
+
         <div class="buttons-container">
             <router-link to="/">
                 <button class="profile-button">Início</button>
@@ -39,34 +59,42 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "UserProfile",
-    data() {
-        return {
-            user: {
-                profilePicture: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngitem.com%2Fpimgs%2Fm%2F78-786293_1240-x-1240-0-avatar-profile-icon-png.png&f=1&nofb=1&ipt=cc7a141c137581362baccd77ab007fd2dd5ad527759c5fe1d3b6dbc81fc4319c&ipo=images",
-                firstName: "Teste",
-                lastName: "dos Santos",
-                email: "testedossantos@gmail.com",
-            },
-            events: ["Evento 1", "Evento 2", "Evento 3"],
-            showModal: false,
-        };
-    },
-    methods: {
-        closeModal() {
-            this.showModal = false;
-        },
-        handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                this.user.profilePicture = URL.createObjectURL(file); // Atualiza a foto de perfil com a nova imagem
-                this.showModal = false; // Fecha o modal após a seleção da imagem
-            }
-        },
-    },
-};
+<script setup>
+import { ref, computed } from 'vue';
+
+const user = ref({
+    profilePicture: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngitem.com%2Fpimgs%2Fm%2F78-786293_1240-x-1240-0-avatar-profile-icon-png.png&f=1&nofb=1&ipt=cc7a141c137581362baccd77ab007fd2dd5ad527759c5fe1d3b6dbc81fc4319c&ipo=images",
+    firstName: "Teste",
+    lastName: "dos Santos",
+    email: "testedossantos@gmail.com",
+});
+
+const events = ref(["Evento 1", "Evento 2", "Evento 3"]);
+const showModal = ref(false);
+
+const achievements = ref([
+    { name: "Conquista 1", unlocked: true },
+    { name: "Conquista 2", unlocked: true },
+    { name: "Conquista 3", unlocked: true },
+    { name: "Conquista 4", unlocked: false },
+    { name: "Conquista 3", unlocked: false },
+    { name: "Conquista 4", unlocked: false },
+]);
+
+const unlockedAchievements = computed(() => achievements.value.filter((ach) => ach.unlocked).length);
+const progressPercentage = computed(() => (unlockedAchievements.value / achievements.value.length) * 100);
+
+function closeModal() {
+    showModal.value = false;
+}
+
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        user.value.profilePicture = URL.createObjectURL(file);
+        showModal.value = false;
+    }
+}
 </script>
 
 <style scoped>
@@ -90,7 +118,6 @@ export default {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    background-size: cover;
 }
 
 .add-photo-icon {
@@ -134,6 +161,44 @@ export default {
     text-align: center;
 }
 
+.achievement-progress {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    background-color: #D9D9D9;
+    border-radius: 24px;
+    height: 35px;
+    position: relative;
+    overflow-x:scroll ;
+}
+
+.progress {
+    background-color: #2a79c2;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.achievement-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px; 
+    width: 30px; 
+    height: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 20px;
+    background-color: #FF8438;
+}
+
+
 .events-container {
     display: flex;
     flex-direction: column;
@@ -151,10 +216,26 @@ export default {
     font-family: "Inder", serif;
 }
 
+.reward-card {
+    position: relative;
+    margin-top: 50px;
+}
+
+.reward-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-family: "Inder", serif;
+    text-align: center;
+    white-space: nowrap; 
+}
+
 .buttons-container {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    margin: 50px 20px 0 0;
 }
 
 .profile-button {
@@ -224,5 +305,4 @@ export default {
 .close-button:hover {
     background-color: #0056b3;
 }
-
 </style>

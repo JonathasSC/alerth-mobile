@@ -15,7 +15,6 @@
 
       </ul>
       <ul class="sidebar__list">
-        <li>Trocar de conta</li>
         
           <li><router-link to="/login">Sair da conta</router-link></li>
         
