@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 button {
@@ -16,16 +17,16 @@ button {
   font-size: 1em;
 }
 
-/* Impede a rolagem da página */
-.no-scroll {
-  overflow: hidden; 
-  height: 100%; 
-}
-
 .back-menu__icon {
   position: absolute;
   top: 20px;
   left: 30px;
   max-width: 100%;
   height: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
 }

@@ -1,29 +1,20 @@
 <template>
   <main>
-    <BurguerBtn
-      class="burguer-btn"
-      :isActive="isActiveBurguer"
-      @click="toggleMenu"
-    />
+    <BurguerBtn class="burguer-btn" :isActive="isActiveBurguer" @click="toggleMenu" />
 
-    <HomeSideBar
-      class="home-sidebar"
-      :isActive="isMenuOpen"
-      @close="toggleMenu"
-    />
+    <HomeSideBar class="home-sidebar" :isActive="isMenuOpen" @close="toggleMenu" />
 
     <EventMap ref="eventMap" />
 
-    <MarkerMenu
-      class="marker-menu"
-      @locationFound="moveToLocation"
-      @categorySelected="sendEventToWebSocket"
-    />
+    <MarkerMenu class="marker-menu" @locationFound="moveToLocation" @categorySelected="sendEventToWebSocket" />
+
+  
   </main>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import ConquestCard from "../components/ConquestCard.vue";
 import MarkerMenu from "../components/MarkerMenu.vue";
 import EventMap from "../components/EventMap.vue";
 import BurguerBtn from "../components/BurguerBtn.vue";
@@ -62,6 +53,7 @@ const sendEventToWebSocket = ({ categoryId, location }) => {
   left: 10px;
   top: 10px;
 }
+
 .burger-btn,
 .home-sidebar {
   position: absolute;
@@ -74,4 +66,5 @@ const sendEventToWebSocket = ({ categoryId, location }) => {
 .marker-menu {
   z-index: 1;
 }
+
 </style>

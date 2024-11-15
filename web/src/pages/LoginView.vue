@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../login-register.css';
+@import '../assets/styles/login-register.css';
 
 .page-container {
   display: flex;

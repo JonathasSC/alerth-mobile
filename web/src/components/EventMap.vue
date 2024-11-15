@@ -37,10 +37,11 @@ export default {
     };
 
     const inicializarMapa = () => {
+      // Define as coordenadas iniciais para Recife, PE
       const savedLocation = JSON.parse(localStorage.getItem("lastLocation"));
       const initialView = savedLocation
         ? [savedLocation.lat, savedLocation.lng]
-        : [-8.0476, -34.8773];
+        : [-8.0476, -34.8770]; // Recife, PE
 
       map.value = L.map("map", { zoomControl: false }).setView(initialView, 15);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -53,6 +54,7 @@ export default {
 
       map.value.on("click", handleMapClick);
     };
+
 
     const handleMapClick = (e) => {
       const { lat, lng } = e.latlng;

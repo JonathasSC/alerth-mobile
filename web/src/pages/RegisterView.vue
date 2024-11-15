@@ -65,7 +65,7 @@ const onSubmit = async (values) => {
 </script>
 
 <style scoped>
-@import '../login-register.css';
+@import '../assets/styles/login-register.css';
 
 .container-acess {
   margin-top: 200px;

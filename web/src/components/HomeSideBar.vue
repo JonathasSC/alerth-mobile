@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar">
     <div class="sidebar__content" :class="{ active: isActive }">
+      <ConquestCard />
+
       <ul class="sidebar__list">
         <h1 class="sidebar__title">Conta</h1>
         <li class="sidebar__item">
@@ -12,18 +14,17 @@
         <li class="sidebar__item">
           <router-link class="sidebar__link" to="/achievements">Conquistas</router-link>
         </li>
-
       </ul>
+
       <ul class="sidebar__list">
-        
-          <li><router-link to="/login">Sair da conta</router-link></li>
-        
+        <li><router-link to="/login" class="sidebar__list-login">Sair da conta</router-link></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup>
+import ConquestCard from "../components/ConquestCard.vue";  // Certifique-se de importar o componente
 defineProps({
   isActive: {
     type: Boolean,
@@ -52,14 +53,12 @@ defineProps({
   z-index: 0;
   left: -240px;
   height: 100%;
-  width: 240px;
+  width: 300px;
   position: absolute;
   display: flex;
   flex-direction: column;
   gap: var(--gap-md);
   background-color: var(--color-slate-50);
-  padding: var(--padding-lg);
-  padding-top: var(--padding-2xl);
   transition: left 0.3s ease;
 }
 
@@ -77,6 +76,10 @@ defineProps({
   gap: var(--gap-sm);
 }
 
+.sidebar__list-login {
+  color: red;
+}
+
 .sidebar__title {
   color: var(--color-blue-primary);
   font-size: var(--font-size-md);
@@ -88,5 +91,11 @@ defineProps({
   margin-left: 10px;
   color: var(--color-slate-400);
   font-weight: 500;
+}
+
+.conquest-card {
+  padding: 10px;
+  background-color: var(--color-white);
+  border-radius: 8px;
 }
 </style>
