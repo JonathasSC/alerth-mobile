@@ -2,17 +2,20 @@
   <section class="menu">
     <div class="menu__content">
       <div class="search">
-        <input
-          class="search__input"
-          type="search"
-          v-model="searchQuery"
-          placeholder="Pesquisar..."
-        />
-        <button class="search__btn" @click="searchLocation">
-          <span class="material-symbols-outlined">search</span>
-        </button>
+        <h2 class="search__title">Digite o endereço do ocorrido</h2>
+        <div class="search__input-wrapper">
+          <input
+            class="search__input"
+            type="search"
+            v-model="searchQuery"
+            placeholder="Rua ou Bairro, cidade"
+          />
+          <button class="search__btn" @click="searchLocation">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+        </div>
       </div>
-      <div class="categories" v-if="categories == Array.isArray()">
+      <div class="categories" v-if="Array.isArray(categories)">
         <button
           v-for="category in categories"
           :key="category.service_category_id"
@@ -28,6 +31,7 @@
     </div>
   </section>
 </template>
+
 
 <script>
 import serviceCategoryService from "../services/serviceCategoryService";
@@ -117,16 +121,44 @@ export default {
 .search {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* Título em cima, input e botão abaixo */
+  gap: 10px;
+}
+
+.search__title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.search__input-wrapper {
+  display: flex;
+  align-items: center; /* Alinha o input e o botão verticalmente */
+  gap: 8px; /* Espaçamento entre o input e o botão */
 }
 
 .search__input {
-  width: 100%;
+  flex: 1; /* Faz o input ocupar todo o espaço restante */
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 .search__btn {
-  background: none;
+  background: var(--color-blue-primary);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.search__btn span {
+  font-size: 24px; /* Ajusta o tamanho do ícone */
 }
 
 .categories {
@@ -164,3 +196,5 @@ export default {
   color: var(--color-slate-50);
 }
 </style>
+
+

@@ -1,20 +1,24 @@
 <template>
   <main>
-    <BurguerBtn class="burguer-btn" :isActive="isActiveBurguer" @click="toggleMenu" />
 
-    <HomeSideBar class="home-sidebar" :isActive="isMenuOpen" @close="toggleMenu" />
+    <!-- <BurguerBtn class="burguer-btn" :isActive="isActiveBurguer" @click="toggleMenu" /> -->
 
-    <EventMap ref="eventMap" />
+    <!-- <HomeSideBar class="home-sidebar" :isActive="isMenuOpen" :style="{ zIndex: isMenuOpen ? 10 : 2 }"
+      @close="toggleMenu" /> -->
 
-    <MarkerMenu class="marker-menu" @locationFound="moveToLocation" @categorySelected="sendEventToWebSocket" />
+    <router-link to="/login">
+      <img src="../assets/Logout.png" alt="Logout" class="logout-icon" />
+    </router-link>
 
-  
+    <EventMap ref="eventMap" :class="{ 'map--disabled': isMenuOpen }" />
+
+    <MarkerMenu class="marker-menu" :class="{ 'marker-menu--behind': isMenuOpen }" @locationFound="moveToLocation"
+      @categorySelected="sendEventToWebSocket" />
   </main>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import ConquestCard from "../components/ConquestCard.vue";
 import MarkerMenu from "../components/MarkerMenu.vue";
 import EventMap from "../components/EventMap.vue";
 import BurguerBtn from "../components/BurguerBtn.vue";
@@ -48,23 +52,47 @@ const sendEventToWebSocket = ({ categoryId, location }) => {
 </script>
 
 <style scoped>
+.logout-icon {
+  position: fixed;
+  top: 17px;
+  left: 17px;
+  z-index: 12;
+}
+
+
 .burger-btn {
-  z-index: 3;
+  z-index: 11;
   left: 10px;
   top: 10px;
 }
 
 .burger-btn,
 .home-sidebar {
-  position: absolute;
+  position: fixed;
 }
 
 .home-sidebar {
-  z-index: 2;
+  position: absolute;
+}
+
+/* Map styles */
+.map {
+  z-index: 10;
+  position: fixed;
+}
+
+.map--disabled {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .marker-menu {
-  z-index: 1;
+  position: absolute;
+  z-index: 10;
+  border-radius: 8px;
 }
 
+.marker-menu--behind {
+  z-index: 9;
+}
 </style>

@@ -26,7 +26,6 @@ defineProps({
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 10;
   background-color: var(--color-slate-50);
   border-radius: var(--border-radius-sm);
 }

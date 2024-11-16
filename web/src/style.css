@@ -1,32 +1,49 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
 * {
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  background-color: #1a1a1a;
-  transition: border-color 0.25s;
-  border: 1px solid transparent;
-  font-size: 1em;
-}
-
-.back-menu__icon {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  max-width: 100%;
-  height: auto;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter";
+    text-decoration: none;
+  }
+  
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  a,
+  button {
+    transition: 0.2s ease;
+  }
+  
+  body {
+    background-color: var(--color-slate-50);
+  }
+  
+  .back-menu__icon {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  button {
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    background-color: #1a1a1a;
+    transition: border-color 0.25s;
+    border: 1px solid transparent;
+    font-size: 1em;
+  }
+  
+  html, body {
+  overflow: hidden; /* Remove a barra de rolagem */
+  height: 100%; /* Garante que o conteúdo ocupe toda a altura da viewport */
 }
