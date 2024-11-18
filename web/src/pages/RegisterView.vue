@@ -31,7 +31,9 @@
         </Field>
       </div>
 
-      <button type="submit" class="button-advanced">Fazer registro</button>
+      <router-link to="/">
+        <button type="submit" class="button-advanced">Fazer registro</button>
+      </router-link>
 
       <div class="container-link-acess">
         <RouterLink to="/login" class="account-info-has
@@ -69,11 +71,10 @@ const onSubmit = async (values) => {
 
 .container-acess {
   margin-top: 200px;
-  
+
 }
 
 .button-advanced {
   width: 339px;
 }
-
 </style>

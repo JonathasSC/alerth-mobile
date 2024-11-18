@@ -77,12 +77,11 @@ export default {
   width: 95%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 15px;
+  margin-bottom: var(--margin-md);
 }
 
 .forgot-password-link {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   color: #7D93B5;
 }
-
 </style>

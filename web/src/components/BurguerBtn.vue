@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <button
     class="burger-btn"
     :class="{ active: isActive }"
@@ -50,4 +50,4 @@ defineProps({
 .burger-btn.active .burger-btn__line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
-</style>
+</style> -->

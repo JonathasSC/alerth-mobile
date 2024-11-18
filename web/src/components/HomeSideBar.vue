@@ -1,17 +1,14 @@
-<template>
+<!-- <template>
   <div class="sidebar">
     <div class="sidebar__content" :class="{ active: isActive }">
-
-      <ul class="sidebar__list" style="margin-top: 100px;">
+      
+      <ul class="sidebar__list">
         <h1 class="sidebar__title">Conta</h1>
         <li class="sidebar__item">
           <router-link class="sidebar__link" to="/profile">Perfil</router-link>
-        </li>
-       
+        </li> 
       </ul>
-
      
-
       <ul class="sidebar__list">
         <li><router-link to="/login"  class="sidebar__list-login">Sair da conta</router-link></li>
       </ul>
@@ -106,4 +103,4 @@ defineProps({
   background-color: var(--color-white);
   border-radius: 8px;
 }
-</style>
+</style> -->

@@ -2,20 +2,22 @@
   <section class="menu">
     <div class="menu__content">
       <div class="search">
-        <h2 class="search__title">Digite o endereço do ocorrido</h2>
+        <h2 class="search__title">Digite o endereço da ocorrência</h2>
         <div class="search__input-wrapper">
           <input
             class="search__input"
             type="search"
             v-model="searchQuery"
             placeholder="Rua ou Bairro, cidade"
+            @keydown.enter="searchLocation" 
           />
           <button class="search__btn" @click="searchLocation">
-            <span class="material-symbols-outlined">search</span>
+            <span class="material-symbols-outlined" style="color: #3888FF;">search</span>
           </button>
         </div>
       </div>
-      <div class="categories" v-if="Array.isArray(categories)">
+
+      <!-- <div class="categories" v-if="Array.isArray(categories)">
         <button
           v-for="category in categories"
           :key="category.service_category_id"
@@ -24,7 +26,10 @@
         >
           {{ category.category }}
         </button>
-      </div>
+      </div> -->
+
+<CardIcon></CardIcon>
+
       <button class="send-btn" @click="sendToWebSocket">
         Enviar ocorrência
       </button>
@@ -32,12 +37,17 @@
   </section>
 </template>
 
-
 <script>
 import serviceCategoryService from "../services/serviceCategoryService";
 import WebSocketService from "../services/webSocketService";
+import CardIcon from "./CardIcon.vue";
 
 export default {
+
+components: {
+CardIcon
+},
+
   data() {
     return {
       categories: [],
@@ -48,7 +58,6 @@ export default {
     try {
       const response = await serviceCategoryService.getAll();
       this.categories = response.data;
-      console.log(response.data);
       const wsUrl = import.meta.env.VITE_WS_BASE_URL;
       WebSocketService.connect(wsUrl);
     } catch (error) {
@@ -105,6 +114,10 @@ export default {
     },
   },
 };
+
+localStorage.removeItem("lastLocation");
+localStorage.removeItem("selectedCategory");
+
 </script>
 
 <style scoped>
@@ -114,72 +127,65 @@ export default {
   left: 0;
   right: 0;
   background-color: white;
-  border-radius: 16px 16px 0 0;
-  padding: 25px;
+  padding: var(--padding-lg);
+  overflow: hidden;
 }
 
 .search {
   width: 100%;
   display: flex;
-  flex-direction: column; /* Título em cima, input e botão abaixo */
-  gap: 10px;
+  flex-direction: column;
+  gap: var(--gap-sm);
 }
 
 .search__title {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #333;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--margin-sm);
+  color: #758EB5;
 }
 
 .search__input-wrapper {
+  position: relative;
   display: flex;
-  align-items: center; /* Alinha o input e o botão verticalmente */
-  gap: 8px; /* Espaçamento entre o input e o botão */
+  align-items: center;
+  gap: 8px;
 }
 
 .search__input {
-  flex: 1; /* Faz o input ocupar todo o espaço restante */
+  flex: 1;
   padding: 10px;
+  padding-right: 40px; 
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
 .search__btn {
-  background: var(--color-blue-primary);
+  position: absolute;
+  right: 10px; 
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  color: white;
+  color: #aaa;
   cursor: pointer;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  padding: 0;
 }
 
 .search__btn span {
-  font-size: 24px; /* Ajusta o tamanho do ícone */
+  font-size: 24px;
 }
 
 .categories {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-top: 10px;
+  gap: var(--gap-sm);
+  margin-top: var(--margin-sm);
 }
 
 .category-btn {
-  padding: 10px;
+  padding: var(--padding-sm);
   background: #eef5ff;
   width: 100%;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.category-btn:hover {
-  background: #d0e1ff;
+  border-radius: var(--border-radius-sm);
 }
 
 .menu__content {
@@ -196,5 +202,3 @@ export default {
   color: var(--color-slate-50);
 }
 </style>
-
-

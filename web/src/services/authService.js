@@ -1,4 +1,4 @@
-import apiServiceService from "./apiServiceService";
+import apiService from "./apiService";
 import authStore from "../stores/authStore";
 
 const authService = {

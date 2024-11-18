@@ -1,17 +1,21 @@
 <template>
   <main>
+    <!-- Foto do usuário -->
+    <router-link to="/profile">
+      <div>
+        <img :src="user.profilePicture" alt="Foto do usuário" class="user-profile__picture" />
+      </div>
+    </router-link>
 
-    <!-- <BurguerBtn class="burguer-btn" :isActive="isActiveBurguer" @click="toggleMenu" /> -->
-
-    <!-- <HomeSideBar class="home-sidebar" :isActive="isMenuOpen" :style="{ zIndex: isMenuOpen ? 10 : 2 }"
-      @close="toggleMenu" /> -->
-
+    <!-- Botão de Logout -->
     <router-link to="/login">
       <img src="../assets/Logout.png" alt="Logout" class="logout-icon" />
     </router-link>
 
+    <!-- Mapa de eventos -->
     <EventMap ref="eventMap" :class="{ 'map--disabled': isMenuOpen }" />
 
+    <!-- Menu de marcadores -->
     <MarkerMenu class="marker-menu" :class="{ 'marker-menu--behind': isMenuOpen }" @locationFound="moveToLocation"
       @categorySelected="sendEventToWebSocket" />
   </main>
@@ -19,19 +23,14 @@
 
 <script setup>
 import { ref } from "vue";
-import MarkerMenu from "../components/MarkerMenu.vue";
+import { user } from "../state/user.js";
 import EventMap from "../components/EventMap.vue";
-import BurguerBtn from "../components/BurguerBtn.vue";
-import HomeSideBar from "../components/HomeSideBar.vue";
+import MarkerMenu from "../components/MarkerMenu.vue";
 
-const isMenuOpen = ref(false);
-const isActiveBurguer = ref(false);
+const isMenuOpen = ref(false); // Estado do menu
+
 const eventMap = ref(null);
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-  isActiveBurguer.value = !isActiveBurguer.value;
-};
 const moveToLocation = ({ lat, lon }) => {
   eventMap.value.moveToLocation({ lat, lon });
 };
@@ -52,6 +51,19 @@ const sendEventToWebSocket = ({ categoryId, location }) => {
 </script>
 
 <style scoped>
+.user-profile__picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 12;
+}
+
 .logout-icon {
   position: fixed;
   top: 17px;
@@ -59,40 +71,24 @@ const sendEventToWebSocket = ({ categoryId, location }) => {
   z-index: 12;
 }
 
-
-.burger-btn {
-  z-index: 11;
-  left: 10px;
-  top: 10px;
-}
-
-.burger-btn,
-.home-sidebar {
-  position: fixed;
-}
-
-.home-sidebar {
-  position: absolute;
-}
-
-/* Map styles */
 .map {
   z-index: 10;
   position: fixed;
 }
 
-.map--disabled {
+/* .map--disabled {
   pointer-events: none;
   opacity: 0;
-}
+} */
 
 .marker-menu {
   position: absolute;
   z-index: 10;
-  border-radius: 8px;
+  border-radius: var(--border-radius-sm);
 }
 
-.marker-menu--behind {
+/* .marker-menu--behind {
   z-index: 9;
-}
+} */
+
 </style>

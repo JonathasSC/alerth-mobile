@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter";
+    font-family: "Inder", serif;
     text-decoration: none;
   }
   
@@ -29,8 +29,8 @@
     position: absolute;
     top: 20px;
     left: 30px;
-    max-width: 100%;
     height: auto;
+    cursor: pointer;
   }
   
   button {
@@ -44,6 +44,6 @@
   }
   
   html, body {
-  overflow: hidden; /* Remove a barra de rolagem */
-  height: 100%; /* Garante que o conteúdo ocupe toda a altura da viewport */
+  overflow: hidden; 
+  height: 100%;
 }

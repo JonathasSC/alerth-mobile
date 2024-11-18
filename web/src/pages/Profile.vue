@@ -2,6 +2,7 @@
     <router-link to="/">
         <img src="../assets/voltarMenu.jpg" class="back-menu__icon" alt="Voltar para o menu anterior" />
     </router-link>
+
     <div class="profile-container">
         <div class="profile-header">
             <div class="profile-picture">
@@ -25,12 +26,9 @@
             </div>
         </div>
 
-        <div class="buttons-container">
-            <router-link to="/">
-                <button class="profile-button">Mapa</button>
-            </router-link>
-            <button class="profile-button">Editar Perfil</button>
-        </div>
+        <router-link to="/">
+            <button class="profile-button">Mapa</button>
+        </router-link>
 
         <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
             <div class="modal-content">
@@ -44,7 +42,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
 
 const user = ref({
     profilePicture: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngitem.com%2Fpimgs%2Fm%2F78-786293_1240-x-1240-0-avatar-profile-icon-png.png&f=1&nofb=1&ipt=cc7a141c137581362baccd77ab007fd2dd5ad527759c5fe1d3b6dbc81fc4319c&ipo=images",
@@ -63,10 +62,28 @@ function closeModal() {
 function handleFileUpload(event) {
     const file = event.target.files[0];
     if (file) {
-        user.value.profilePicture = URL.createObjectURL(file);
+        // Cria a URL da imagem localmente
+        const imageURL = URL.createObjectURL(file);
+
+        // Atualiza a foto do usuário
+        user.value.profilePicture = imageURL;
+
+        // Salva a URL da imagem no localStorage
+        localStorage.setItem('profilePicture', imageURL);
+
+        // Fecha o modal
         showModal.value = false;
     }
 }
+
+// Ao inicializar o componente, carregar a foto do localStorage, se disponível
+onMounted(() => {
+    const savedProfilePicture = localStorage.getItem('profilePicture');
+    if (savedProfilePicture) {
+        user.value.profilePicture = savedProfilePicture;
+    }
+});
+
 </script>
 
 <style scoped>
@@ -76,9 +93,11 @@ function handleFileUpload(event) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: var(--padding-lg);
     max-width: 400px;
-    margin: 20px auto;
+    overflow-y: auto;
+    max-height: 95vh;
+    margin: var(--margin-md) auto;
 }
 
 .profile-header {
@@ -117,8 +136,7 @@ function handleFileUpload(event) {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    font-size: 18px;
+    font-size: var(--font-size-sm);
     font-weight: bold;
 }
 
@@ -133,64 +151,48 @@ function handleFileUpload(event) {
 }
 
 .profile-info h2 {
-    font-size: 24px;
-    margin: 5px 0;
-    font-family: "Inder", serif;
+    font-size: var(--font-size-md);
+    margin: var(--margin-md) 0;
 }
 
 .profile-info p {
     color: #666;
-    font-size: 16px;
-    font-family: "Inder", serif;
 }
 
 .events-title {
-    font-size: 20px;
+    font-size: var(--font-size-sm);
     margin-top: 30px;
     color: #333;
-    font-family: "Inder", serif;
     text-align: center;
 }
 
 .events-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--gap-md);
     width: 80%;
-    margin-top: 20px;
+    margin-top: var(--margin-lg);
 }
 
 .event-card {
     background-color: #e0e0e0;
-    padding: 15px;
+    padding: var(--padding-md);
     text-align: center;
-    font-size: 18px;
+    font-size: var(--font-size-sm);
     color: #333;
-    font-family: "Inder", serif;
-}
-
-.buttons-container {
-    display: flex;
-    gap: 10px;
-    margin: 50px 20px 0 0;
 }
 
 .profile-button {
-    padding: 10px 40px;
+    display: flex;
+    gap: var(--gap-md);
+    margin: var(--margin-2xl) var(--margin-md) 0 0;
+    padding: var(--padding-sm) var(--padding-xl);
     font-size: 16px;
-    font-family: "Inder", serif;
-    background-color: #007bff;
     color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border-radius: var(--border-radius-xs);
+    background-color: #4CAF50;
 }
 
-.profile-button:hover {
-    background-color: #0056b3;
-}
-
-/* Modal Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -206,40 +208,34 @@ function handleFileUpload(event) {
 
 .modal-content {
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: var(--padding-md);
+    border-radius: var(--border-radius-sm);
     width: 300px;
     text-align: center;
-    font-family: "Inder", serif;
 }
 
 .modal-content h2 {
-    margin-bottom: 15px;
-    font-size: 20px;
+    margin-bottom: var(--margin-lg);
+    font-size: var(--font-size-md);
 }
 
 .modal-content label {
     display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
+    margin-left: var(--margin-sm);
+    font-size: var(--margin-md);
+    text-align: left;
 }
 
 .modal-content input[type="file"] {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: var(--padding-sm);
+    margin-bottom: var(--margin-md);
 }
 
 .close-button {
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: "Inder", serif;
-}
-
-.close-button:hover {
-    background-color: #0056b3;
+    padding: var(--padding-sm) var(--padding-lg);
+    border-radius: var(--border-radius-xs);
 }
 </style>
